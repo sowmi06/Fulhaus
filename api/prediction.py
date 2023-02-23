@@ -2,6 +2,7 @@ from model import classification_model  as c
 import numpy as np
 from PIL import Image
 from io import BytesIO
+import os
 
 
 def load_model(weights_path, image_size):
@@ -12,8 +13,11 @@ def load_model(weights_path, image_size):
 
 
 image_size = 400
-
-model = load_model('../code/api/final_model.h5', image_size)
+dir_path = os.path.dirname(os.path.realpath(__file__))
+filepath = os.path.join(dir_path, 'final_model_w.h5')
+print(dir_path)
+print(filepath)
+model = load_model(filepath, image_size)
 
 
 def read_image(image_encoded):

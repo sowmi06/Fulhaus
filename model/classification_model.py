@@ -103,7 +103,7 @@ def main():
     print("F1 Score = {}".format(f1score))
     print("Confusion Matrix = {}".format(conf_mat))
 
-    model.save('./../api/final_model.h5')
+    model.save_weights('./../api/final_model_w.h5')
 
 
 if __name__ == '__main__':
