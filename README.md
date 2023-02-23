@@ -1,13 +1,5 @@
 # Image Classification 
 
-## Table of contents
-
-1.  [Project Description](https://github.com/sowmi06/Fulhaus/blob/main/README.md#project-description)
-1.  [Operating Instructions](https://github.com/sowmi06/Fulhaus/blob/main/README.md#operating-instructions)
-1.  [Manifesting Directory structure](https://github.com/sowmi06/Fulhaus/blob/main/README.md#manifesting-directory-structure)
-
-
-## Project Description
 - Building Classification Model
   - In this project an image classification model has been developed to classify the images based on three classes - "Bed", "Chair", "Sofa". The dataset given is a balanced dataset constitute of 300 images in total with 100 images per class. 
   - An Explorator data Analysis is done; the given images are in different dimensions ranging from (299, 600, 3)  to (5209, 5209, 3) so the images resized to (400, 400, 3),  rescaled the pixel values to 1/255.0 and the image augumentation like rotation, sheering and flipping is done to show minor modification on the images when performing classification. 
@@ -24,14 +16,16 @@
 
 
 ## Operating Instructions
-CICD pipeline 
-on each push GIT hub acttions builds docker image and pushes to docker HUB 
+CI / CD pipeline - on each push GIT hub action builds docker image and pushes to docker HUB 
 
-#Docker Pull 
-  docker pull sowmidevaraj/fulhaus:latest
+- Docker Pull 
+        
+        docker pull sowmidevaraj/fulhaus:latest
+        
+- Docker Run 
+        
+        docker run -p 80:80 sowmidevaraj/fulhaus:latest
 
-#Dockr Run
- docker run -p 80:80 sowmidevaraj/fulhaus:latest
+ - Access API via postman or browser and upload any images of Bed,Chair,Sofa, api will response the type of image
  
- access API via postman or borwser upload any (Bed,Chair,Sofa) image, api will respode the type
- http://localhost/docs
+        http://localhost/docs
