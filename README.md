@@ -20,11 +20,11 @@ CI / CD pipeline - on each push GIT hub action builds docker image and pushes to
 
 - Docker Pull 
         
-        docker pull sowmidevaraj/fulhaus:latest
+      docker pull sowmidevaraj/fulhaus:latest
         
 - Docker Run 
         
-        docker run -p 80:80 sowmidevaraj/fulhaus:latest
+      docker run -p 80:80 sowmidevaraj/fulhaus:latest
 
  - Access API via postman or browser and upload any images of Bed,Chair,Sofa, api will response the type of image
  
