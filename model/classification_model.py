@@ -1,11 +1,13 @@
-import DataPreprocessing as ds
 import numpy as np
+import tensorflow as tf
+import cv2
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import recall_score, precision_score, f1_score, confusion_matrix
-import tensorflow as tf
+from sklearn.preprocessing import LabelEncoder
 from tensorflow.keras.layers import *
 from tensorflow.keras import *
-import os
+
 
 
 
@@ -58,7 +60,7 @@ def main():
     SIZE = 400
     epoch = 20
     batchsize = 4
-    X, Y = ds.Read_Dataset(filepath, SIZE)
+    X, Y = Read_Dataset(filepath, SIZE)
     print(X)
     print(X.shape)
     print(Y)
@@ -110,7 +112,35 @@ def main():
     print("F1 Score = {}".format(f1score))
     print("Confusion Matrix = {}".format(conf_mat))
 
-    model.save_weights('./../api/final_model_w.h5')
+
+    model.save_weights('./model/final_model_w.h5')
+
+
+def Read_Dataset(root, SIZE):
+    x = []
+    y = []
+    # reading file from parent path
+    for parentPath, subdirs, files in os.walk(root):
+        for subdir in subdirs:
+            path = parentPath + "/" + subdir
+            # label = subdir
+            datafile = os.listdir(path)
+            for file_name in datafile:
+                imgPath = path + '/' + file_name
+                # loading the images
+                img = cv2.imread(imgPath, cv2.COLOR_BGR2RGB)
+                image = cv2.resize(img, (SIZE, SIZE))
+                x.append(image)
+                y.append(subdir)
+                # printing the image shape and its labels
+                print(img.shape)
+                print(subdir)
+    x = np.asarray(x)
+    y = np.asarray(y)
+    # using label encoder for the y_train and y_test
+    label_encode = LabelEncoder()
+    y = label_encode.fit_transform(y)
+    return x, y
 
 
 if __name__ == '__main__':

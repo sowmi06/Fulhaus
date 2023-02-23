@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install python3-opencv  -y
 
 COPY . .
 
+RUN python3 /code/model/classification_model.py
 
-RUN python3 model/classification_model.py
-
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "model.main:app", "--host", "0.0.0.0", "--port", "80"]
