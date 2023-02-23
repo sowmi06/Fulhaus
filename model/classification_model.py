@@ -1,10 +1,11 @@
-from model import DataPreprocessing as ds
+import DataPreprocessing as ds
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import recall_score, precision_score, f1_score, confusion_matrix
 import tensorflow as tf
 from tensorflow.keras.layers import *
 from tensorflow.keras import *
+import os
 
 
 
@@ -52,10 +53,16 @@ def CNN(SIZE):
 
 def main():
     path = 'Dataset/Data for test/'
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    filepath = os.path.join(dir_path, path)
     SIZE = 400
-    epoch = 50
+    epoch = 20
     batchsize = 4
-    X, Y = ds.Read_Dataset(path, SIZE)
+    X, Y = ds.Read_Dataset(filepath, SIZE)
+    print(X)
+    print(X.shape)
+    print(Y)
+    print(Y.shape)
 
     X_train, X_test, X_val, y_train, y_test, y_val = split(X, Y)
 
