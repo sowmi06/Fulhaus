@@ -28,4 +28,4 @@ CI / CD pipeline - on each push GIT hub action builds docker image and pushes to
 
  - Access API via postman or browser and upload any images of Bed,Chair,Sofa, api will response the type of image
  
-        http://localhost/docs
+      http://localhost/docs
