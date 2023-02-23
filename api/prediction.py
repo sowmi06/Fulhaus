@@ -13,7 +13,7 @@ def load_model(weights_path, image_size):
 
 image_size = 400
 
-model = load_model('../api/final_model.h5', image_size)
+model = load_model('../code/api/final_model.h5', image_size)
 
 
 def read_image(image_encoded):

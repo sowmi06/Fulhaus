@@ -72,9 +72,8 @@ def main():
     model = CNN(SIZE)
 
     earlystopping = tf.keras.callbacks.EarlyStopping(monitor="val_accuracy", mode="max", verbose=1, min_delta=0.005, patience=10)
-    checkpoint = tf.keras.callbacks.ModelCheckpoint('./../api/final_model.h5', monitor="val_accuracy", verbose=1, save_best_only=True, mode="max")
 
-    model.fit(train_set, epochs=epoch, validation_data=val_set, callbacks=[myCallback(), earlystopping, checkpoint])
+    model.fit(train_set, epochs=epoch, validation_data=val_set, callbacks=[myCallback(), earlystopping])
 
     # fetch the val accuracy
     _, val_accuracy = model.evaluate(val_set, verbose=1)
@@ -88,11 +87,11 @@ def main():
 
 
     # Calculate the scores for each fold
-    precision = precision_score(y_test, y_predicted, average='weighted')
+    precision = precision_score(y_test, y_predicted, average='macro')
 
-    recall = recall_score(y_test, y_predicted, average='weighted')
+    recall = recall_score(y_test, y_predicted, average='macro')
 
-    f1score = f1_score(y_test, y_predicted, average='weighted')
+    f1score = f1_score(y_test, y_predicted, average='macro')
 
     conf_mat = confusion_matrix(y_test, y_predicted)
 
@@ -104,7 +103,7 @@ def main():
     print("F1 Score = {}".format(f1score))
     print("Confusion Matrix = {}".format(conf_mat))
 
-    # model.save('./../api/final_model.h5')
+    model.save('./../api/final_model.h5')
 
 
 if __name__ == '__main__':
